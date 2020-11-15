@@ -1,0 +1,35 @@
+1.Skat API:
+- Implement CRUD operations for SkatUser
+- Implement CRUD operations for SkatYear. When creating a SkatYearentry, keep in mind the following:
+    - It will create as many entries in the SkatUserYear Table as there are SkatUsers
+- Implement a /pay-taxes endpoint (POST request):
+    - Takes a body with a UserId (Not BankUserId, Not SkatUserId –UserId that comes from the supposed 
+    Main System developed in Mandatory I)and the total amount that is in that user’sbank account. 
+    - An initial check will occur –if theuserdid not previously paid his taxes
+    - A user is deemed to have paid his taxes if the value is greater than 0in the SkatUserYear table.
+    - A call will be made to the Tax Calculator and depending on the response, the SkatUserYearwill be updated 
+    with the returned sum from the Tax Calculator and the IsPaid property will be set to true...
+    - Make a call to an endpoint in BankAPI to subtract money from account. The body of that request 
+    should contain an amount and a UserId(Not BankUserId, not SkatUserId)
+
+SkatUser
+id 
+userId
+createdAt
+isActive
+
+SkatUserYear
+id 
+skatUserId
+skatYearId
+userId
+isPaid
+amount
+
+SkatYear
+id
+label   
+createdAt
+modifiedAt
+startDate
+endDate

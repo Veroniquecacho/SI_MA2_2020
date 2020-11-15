@@ -1,7 +1,7 @@
 {    
     "Routes": [    
       {    
-        "DownstreamPathTemplate": "/api/{controller}/{everything}",    
+        "DownstreamPathTemplate": "/borger",    
         "DownstreamScheme": "http",
         "DownstreamHostandPorts": [    
          {    
@@ -9,11 +9,11 @@
            "Port": "5004"    
           }     
         ],    
-        "UpstreamPathTemplate": "/api/borger/{controller}/{everything}",    
+        "UpstreamPathTemplate": "/borger",    
         "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT"]
       },
       {    
-        "DownstreamPathTemplate": "/api/{controller}/{identifier}/{everything}",    
+        "DownstreamPathTemplate": "/borger/{identifier}",    
         "DownstreamScheme": "http",
         "DownstreamHostandPorts": [    
          {    
@@ -21,11 +21,11 @@
            "Port": "5004"    
           }     
         ],    
-        "UpstreamPathTemplate": "/api/borger/{controller}}/{identifier}/{everything}",    
+        "UpstreamPathTemplate": "/borger/{identifier}",    
         "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT"]
       },
       {    
-        "DownstreamPathTemplate": "/api/{controller}",    
+        "DownstreamPathTemplate": "/address",    
         "DownstreamScheme": "http",
         "DownstreamHostandPorts": [    
          {    
@@ -33,7 +33,7 @@
            "Port": "5004"    
           }     
         ],    
-        "UpstreamPathTemplate": "/api/borger/{controller}",    
+        "UpstreamPathTemplate": "/address",    
         "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT"]
       },
       {    
@@ -107,6 +107,18 @@
         ],    
         "UpstreamPathTemplate": "/api/skat/{controller}/{identifier}/{everything}",    
         "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT"]
+      },
+      {    
+        "DownstreamPathTemplate": "/pay-taxes",    
+        "DownstreamScheme": "http",
+        "DownstreamHostandPorts": [    
+         {    
+           "Host": "localhost",    
+           "Port": "5006"    
+          }     
+        ],    
+        "UpstreamPathTemplate": "/pay-taxes",    
+        "UpstreamHttpMethod": [ "POST"]
       },
       {
         "DownstreamPathTemplate": "/todos",

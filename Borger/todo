@@ -1,0 +1,17 @@
+1. CRUD for BorgerUser and Address entities.
+- Address can only be created when if the user exists 
+- Borger can only have one active address at any given time
+- If a new address is added the old will be invalid 
+- If a borger is deleted so it the corresponding address
+
+
+Borger User:
+id
+userId
+createdAt
+
+Address:
+id
+borgerUserId
+createdAt
+isValid 

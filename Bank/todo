@@ -1,0 +1,64 @@
+1.Bank API
+- Implement CRUD operations for: BankUser, Accounto
+- Implement /add-depositendpoint:
+    - Will receive a body with an amount and a BankUserId
+    - Amount deposited cannot be null or negative
+    - A deposit amount will first be sent to the interest rate function –the result will be saved in the database
+    - A record will be inserted in the deposits table as well
+- Implement /list-depositsendpoint:
+    - GETrequest that takes a BankUserId
+    - Returns a list of all the deposits that were made by that user
+- Implement /create-loan endpoint:
+    - Request will contain the BankUserId and Loan Amount. 
+    - A POST request will be made to the Loan Algorithm Function with an amount and the total account amount for that user
+    - If the status code is 200, a loan record will be created
+    - If the status code is 403 or similar, an error will be returned
+- Implement /pay-loan endpoint:
+    - The loan can be paid integrally by using the /pay-loan endpoint. 
+    The request will containthe BankUserId and the LoanId as well. 
+    This will make the amount from a loan 0 and will subtract that amount from the account 
+    of that user. If there aren’t enough money on the account, an error will be returned.
+- Implement /list-loans endpoint
+    - GET request which will return a list of all the loans belonging to a user that are greater than 0 (not paid)
+    - The request should have a BankUserId to retrieve the loans for a user.
+- Implement /withdrawl-money endpoint:
+    - The body of that request should contain an amount and a UserId(Not BankUserId, not SkatUserId)
+    - Subtract (if possible)the amount from that users account.Throw an error otherwise.
+
+2.Loan Algorithm Function:
+- Has a POST endpoint. 
+- Will calculate if the loan exceeds 75% of the account amount. If it does, return 403, otherwise 200
+3.Interest Rate Function:
+- Has a POST endpointo 
+- Uponanew deposit, this function will be called. It will return the amount + 2% of the deposited amount
+
+
+Loan 
+id
+userId
+createdAt
+modifiedAt
+amount
+
+
+BankUser 
+id 
+userId
+createdAt
+modifiedAt
+
+Deposit
+id 
+bankUserId
+createdAt
+modifiedAt
+
+Account
+id 
+bankUserId
+accountNo
+isStudent
+createdAt
+modifiedAt
+interestRate
+amount
