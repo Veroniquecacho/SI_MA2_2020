@@ -677,11 +677,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/veronique/Documents/School/7. Semester/System Intergration/SI_MA2_2020/Gateway/Gateway.API/Gateway.API.csproj",
+      "projectUniqueName": "/Users/veronique/Downloads/SI_MA2_2020/Gateway/Gateway.API/Gateway.API.csproj",
       "projectName": "Gateway.API",
-      "projectPath": "/Users/veronique/Documents/School/7. Semester/System Intergration/SI_MA2_2020/Gateway/Gateway.API/Gateway.API.csproj",
+      "projectPath": "/Users/veronique/Downloads/SI_MA2_2020/Gateway/Gateway.API/Gateway.API.csproj",
       "packagesPath": "/Users/veronique/.nuget/packages/",
-      "outputPath": "/Users/veronique/Documents/School/7. Semester/System Intergration/SI_MA2_2020/Gateway/Gateway.API/obj/",
+      "outputPath": "/Users/veronique/Downloads/SI_MA2_2020/Gateway/Gateway.API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/veronique/.nuget/NuGet/NuGet.Config"

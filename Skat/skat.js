@@ -262,7 +262,7 @@ app.delete('/skat-year/:id', (req, res) => {
 app.post('/pay-taxes', (req, res) =>{
 
     let userId = req.body.userId;
-    let amount = req.body.amount;
+    let totalamount = req.body.amount;
     let getUserSql = 'SELECT * FROM SkatUserYear WHERE UserId = ?';
     let getSkatYearSql = 'SELECT * FROM SkatYear WHERE Id = ?';
     let updateSql = 'UPDATE SkatUserYear SET IsPaid = ?, Amount = ? WHERE Id = ? ';
@@ -276,16 +276,51 @@ app.post('/pay-taxes', (req, res) =>{
             })
         }
         if(SkatUserYear.length){
-            for(i = 0; SkatUserYear.length > i; i++){
+                if(SkatUserYear[0].IsPaid === 0 && SkatUserYear[0].Amount <= 0){
+                  
+                
+                    db.all(getSkatYearSql, SkatUserYear[0].SkatYearId, (err, skatYear)=>{
+                        if(err){
+                            res.status(400).json({err:err.message})
+                        } 
+                        let year = new Date().getFullYear();
+                      
+                        if(skatYear[0].EndDate.substring(6, 10) == year){
+                            
+                            axios.post('http://localhost:7071/api/Skat_Tax_Calculator', {"money": totalamount}).then((response) =>{
+                                let taxamount = response.data.tax_money;
+                                axios.post('http://localhost:5005/api/bank/withdrawl-money', {"Amount": taxamount, "UserId": userId}).then((response) => {
+                                    db.run(updateSql, [1, taxamount, SkatUserYear[0].Id], (err) => {
+                                        if (err) {
+                                            res.status(400).json({
+                                                message: 'The skat user year was not updated',
+                                                error: err.message
+                                            });
+                                        } else {
+                                            res.status(200).json({
+                                                message: 'Taxes was paid'
+                                            });
+                                        }
+                                    });
+                                 
+                                  
+                                }).catch(err =>{
+                                    res.status(404).json({error:err.message})
+                            })
+    
+                            })
+                          
 
-                //if(SkatUserYear[i].IsPaid === 0 && SkatUserYear[i].Amount > 0)
-                if(SkatUserYear[i].IsPaid === 0){
-
-                    console.log(SkatUserYear[i].UserId)
+                        }
+                        
+                       
+                    })
+                    
+                }
+                else{
+                    res.status(400).json({message: 'The Taxes for this year is paid'});
                 }
 
-            }
-            res.status(200).json({skatUser: SkatUserYear})
 
         }else{
             res.status(404).json({message: `No Skat user year found with user id:${userId}`});
@@ -297,6 +332,7 @@ app.post('/pay-taxes', (req, res) =>{
         
 
     })
+
 
     /*
     * Takes a body with a UserId (Not BankUserId, Not SkatUserId –UserId that comes from the supposed  
