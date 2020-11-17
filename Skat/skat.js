@@ -10,7 +10,7 @@ app.listen(5006, (err) => {
         console.log(err);
     }
     else{
-        console.log('Skat System | Listening on port 8001');
+        console.log('Skat System | Listening on port 5006');
     }
 });
 
@@ -213,7 +213,7 @@ app.get('/skat-year/:id', (req, res) => {
 // Update Skat Year
 app.put('/skat-year/:id', (req, res) =>{
     let Id = req.params.id;
-    let Label = req.body.UserId;
+    let Label = req.body.Label;
     let start = req.body.startDate;
     let end = req.body.endDate;
     let getSql = `SELECT * FROM SkatYear WHERE Id = ?`;
