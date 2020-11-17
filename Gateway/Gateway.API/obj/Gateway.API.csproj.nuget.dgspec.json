@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/veronique/Documents/School/7. Semester/System Intergration/SI_MA2_2020/Gateway/Gateway.API/Gateway.API.csproj": {}
+  },
+  "projects": {
+    "/Users/veronique/Documents/School/7. Semester/System Intergration/SI_MA2_2020/Gateway/Gateway.API/Gateway.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/veronique/Documents/School/7. Semester/System Intergration/SI_MA2_2020/Gateway/Gateway.API/Gateway.API.csproj",
+        "projectName": "Gateway.API",
+        "projectPath": "/Users/veronique/Documents/School/7. Semester/System Intergration/SI_MA2_2020/Gateway/Gateway.API/Gateway.API.csproj",
+        "packagesPath": "/Users/veronique/.nuget/packages/",
+        "outputPath": "/Users/veronique/Documents/School/7. Semester/System Intergration/SI_MA2_2020/Gateway/Gateway.API/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/veronique/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Ocelot": {
+              "target": "Package",
+              "version": "[16.0.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
