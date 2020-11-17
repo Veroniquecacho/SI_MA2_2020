@@ -10,7 +10,7 @@
           }     
         ],    
         "UpstreamPathTemplate": "/borger",    
-        "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT"]
+        "UpstreamHttpMethod": [ "GET"]
       },
       {    
         "DownstreamPathTemplate": "/borger/{identifier}",    
@@ -37,15 +37,15 @@
         "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT"]
       },
       {    
-        "DownstreamPathTemplate": "/api/{controller}/{everything}",    
+        "DownstreamPathTemplate": "/address/{identifier}",    
         "DownstreamScheme": "http",
         "DownstreamHostandPorts": [    
          {    
            "Host": "localhost",    
-           "Port": "5005"    
+           "Port": "5004"    
           }     
         ],    
-        "UpstreamPathTemplate": "/api/bank/{controller}/{everything}",    
+        "UpstreamPathTemplate": "/address/{identifier}",    
         "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT"]
       },
       {    

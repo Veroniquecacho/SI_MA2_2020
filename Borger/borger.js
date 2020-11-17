@@ -16,7 +16,7 @@ app.listen(5004, (err) => {
         console.log(err);
     }
     else{
-        console.log('Borger Server | Listening on port 8000');
+        console.log('Borger Server | Listening on port 5004');
     }
 });
 
@@ -179,15 +179,15 @@ app.post('/address', (req, res) => {
     let a = req.body.address;
     let today = new Date().toLocaleDateString();
 
-    let sql = `INSERT INTO address(BorgerUserId, Address, CreatedAt, isValid) VALUES(?, ?, ?, ?)`;
-    let updateSql =`UPDATE address SET isValid = ? WHERE BorgerUserID = ? AND isValid = 1`;
+    let sql = `INSERT INTO address(BorgerUserId, Address, CreatedAt, isValid) VALUES(?, ?, ?, 1)`;
+    let updateSql =`UPDATE address SET isValid = 0 WHERE BorgerUserID = ? AND isValid = 1`;
     axios.get(`http://localhost:5004/borgeruid/${borgerUserId}`).then(response =>{
 
         axios.get(`http://localhost:5004/addressByUser/${borgerUserId}`).then(response =>{
             let addresses = response.data.address
             for (i = 0; i < addresses.length; i++){
                 if(addresses[i].Address != a){
-                    db.run(updateSql, [0, addresses[i].BorgerUserId], (err) => {
+                    db.run(updateSql, [addresses[i].BorgerUserId], (err) => {
                         if (err) {
                             res.status(400).json({
                                 message: 'The address was not updated',
@@ -198,7 +198,7 @@ app.post('/address', (req, res) => {
                     break;
                 } 
             }
-            db.run(sql, [borgerUserId, a, today, 1], (err) => {
+            db.run(sql, [borgerUserId, a, today], (err) => {
                 if(err){
                     res.status(400).json({error:err})
                 }else{
@@ -275,7 +275,7 @@ app.put('/address/:id', (req, res) => {
     let Id = req.params.id;
     let a = req.body.address;
     let getSql = `SELECT * FROM address WHERE Id = ?`;
-    let updateSql = `UPDATE borger SET Address = ?  WHERE Id = ?`;
+    let updateSql = `UPDATE address SET Address = ?  WHERE Id = ?`;
     db.all(getSql, [Id], (err, address) => {
         if (err) {
             res.status(400).json({error: err});
