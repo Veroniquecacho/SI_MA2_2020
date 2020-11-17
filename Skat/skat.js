@@ -10,7 +10,11 @@ app.listen(5006, (err) => {
         console.log(err);
     }
     else{
+<<<<<<< HEAD
         console.log('Skat System | Listening on port 8001');
+=======
+        console.log('Skat System | Listening on port 5006');
+>>>>>>> origin
     }
 });
 
@@ -213,7 +217,11 @@ app.get('/skat-year/:id', (req, res) => {
 // Update Skat Year
 app.put('/skat-year/:id', (req, res) =>{
     let Id = req.params.id;
+<<<<<<< HEAD
     let Label = req.body.UserId;
+=======
+    let Label = req.body.Label;
+>>>>>>> origin
     let start = req.body.startDate;
     let end = req.body.endDate;
     let getSql = `SELECT * FROM SkatYear WHERE Id = ?`;
@@ -258,6 +266,7 @@ app.delete('/skat-year/:id', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
 app.put('/one/:id', (req, res) => {
     let Id = req.params.id;
     let oneUpdate = "UPDATE SkatUserYear SET Amount = 1000 WHERE UserId = ?"
@@ -269,6 +278,9 @@ app.put('/one/:id', (req, res) => {
         res.status(201).json({message: 'Updated'})
     })
 })
+=======
+
+>>>>>>> origin
 
 app.post('/pay-taxes', (req, res) =>{
 
@@ -287,6 +299,7 @@ app.post('/pay-taxes', (req, res) =>{
             })
         }
         if(SkatUserYear.length){
+<<<<<<< HEAD
                 if(SkatUserYear[0].IsPaid === 0 && SkatUserYear[0].Amount > 0){
                     let amount = SkatUserYear[0].Amount
                     console.log('Is Not Paid')
@@ -317,6 +330,17 @@ app.post('/pay-taxes', (req, res) =>{
 
             
             // only for debuggin
+=======
+            for(i = 0; SkatUserYear.length > i; i++){
+
+                //if(SkatUserYear[i].IsPaid === 0 && SkatUserYear[i].Amount > 0)
+                if(SkatUserYear[i].IsPaid === 0){
+
+                    console.log(SkatUserYear[i].UserId)
+                }
+
+            }
+>>>>>>> origin
             res.status(200).json({skatUser: SkatUserYear})
 
         }else{

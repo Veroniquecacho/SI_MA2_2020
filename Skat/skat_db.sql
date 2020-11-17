@@ -5,7 +5,11 @@ CREATE TABLE IF NOT EXISTS SkatUser(
     [IsActive] INTEGER DEFAULT 1
 );
 
+<<<<<<< HEAD
 
+=======
+DROP TABLE SkatUserYear;
+>>>>>>> origin
 CREATE TABLE IF NOT EXISTS SkatUserYear(
     [Id] INTEGER PRIMARY KEY AUTOINCREMENT,
    	[SkatUserId] INTEGER NOT NULL,
@@ -15,7 +19,11 @@ CREATE TABLE IF NOT EXISTS SkatUserYear(
 	[Amount] DECIMAL NOT NULL
 );
 
+<<<<<<< HEAD
 
+=======
+DROP TABLE SkatYear;
+>>>>>>> origin
 CREATE TABLE IF NOT EXISTS SkatYear(
     [Id] INTEGER PRIMARY KEY AUTOINCREMENT,
    	[Label] VARCHAR NOT NULL,
