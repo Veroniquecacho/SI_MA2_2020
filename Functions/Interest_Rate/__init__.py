@@ -1,4 +1,3 @@
-import logging
 import azure.functions as func
 import json
 
@@ -12,10 +11,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         pass
 
     else:
-        deposit_amount = req_body.get('amount')
-        interest_rate = deposit_amount * 0.02
+        amount = float(req_body.get('depositAmount'))
+        interest_rate = amount * 0.02
 
-        amount_with_interest = deposit_amount + interest_rate
-        return func.HttpResponse( status_code=200, body=json.dumps({"amount_with_interest": amount_with_interest}) )
-
+        final_amount = amount + interest_rate
+        return func.HttpResponse( status_code=200, body=json.dumps({"amount": final_amount}) )
 

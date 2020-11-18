@@ -471,7 +471,7 @@ app.put("/api/bank/pay-loan", (req, res) => {
     axios.get(`http://localhost:5000/api/bank/accounts/uid/${BankUserId}`).then(response => {
         
         let accounts = response.data.Account;
-        console.log(accounts);
+     
 
         let today = new Date().toLocaleString();
 
@@ -578,6 +578,7 @@ app.post("/api/bank/withdrawl-money", (req, res) => {
 
                 if (withdrawl) {
                     let finalAccountAmount = accountAmount - WithdrawlAmount;
+                
                     let today = new Date().toLocaleString();
 
                     db.run(updateAccountSql, [finalAccountAmount, today, id], (err) => {

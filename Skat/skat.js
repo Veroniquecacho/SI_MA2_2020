@@ -176,7 +176,7 @@ app.post('/skat-year', (req, res) => {
     })
 })
 
-// Get All Skat User
+// Get All Skat Year
 app.get('/skat-year', (req, res) => {
     let sql = `SELECT * FROM SkatYear;`; 
     db.all(sql, [], (err, skatYear) =>{
@@ -186,13 +186,13 @@ app.get('/skat-year', (req, res) => {
                 error: err
             });
         } else{
-            res.status(200).json({skatUser: skatYear});
+            res.status(200).json({SkatYear: skatYear});
             
         }
     });
 
 });
-// Get All Skat Year
+// Get All Skat Year by id
 app.get('/skat-year/:id', (req, res) => {
     let Id = req.params.id
     let sql = `SELECT * FROM SkatYear WHERE Id = ?;`; 
@@ -203,7 +203,7 @@ app.get('/skat-year/:id', (req, res) => {
                 error: err
             });
         } else{
-            res.status(200).json({skatUser: skatYear});
+            res.status(200).json({SkatYear: skatYear});
             
         }
     });
@@ -277,18 +277,20 @@ app.post('/pay-taxes', (req, res) =>{
         }
         if(SkatUserYear.length){
                 if(SkatUserYear[0].IsPaid === 0 && SkatUserYear[0].Amount <= 0){
-                  
-                
+                 
+                    
+                    
                     db.all(getSkatYearSql, SkatUserYear[0].SkatYearId, (err, skatYear)=>{
                         if(err){
                             res.status(400).json({err:err.message})
                         } 
                         let year = new Date().getFullYear();
-                      
+                        
                         if(skatYear[0].EndDate.substring(6, 10) == year){
-                            
+                         
                             axios.post('http://localhost:7071/api/Skat_Tax_Calculator', {"money": totalamount}).then((response) =>{
                                 let taxamount = response.data.tax_money;
+                                
                                 axios.post('http://localhost:5005/api/bank/withdrawl-money', {"Amount": taxamount, "UserId": userId}).then((response) => {
                                     db.run(updateSql, [1, taxamount, SkatUserYear[0].Id], (err) => {
                                         if (err) {

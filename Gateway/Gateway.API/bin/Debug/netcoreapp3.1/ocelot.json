@@ -10,7 +10,7 @@
           }     
         ],    
         "UpstreamPathTemplate": "/borger",    
-        "UpstreamHttpMethod": [ "GET"]
+        "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT"]
       },
       {    
         "DownstreamPathTemplate": "/borger/{identifier}",    
