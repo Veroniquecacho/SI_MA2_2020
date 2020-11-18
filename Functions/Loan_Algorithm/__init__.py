@@ -3,11 +3,13 @@ import json
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
+
     try:
         req_body = req.get_json()
 
     except ValueError:
         pass
+    
     else:
         loan = req_body.get('loan')
         account_amount = req_body.get('amount')
